@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { SearchCountryField, TooltipLabel, CountryISO } from 'ngx-intl-tel-input';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ngxphone';
+  separateDialCode = true;
+	SearchCountryField = SearchCountryField;
+	TooltipLabel = TooltipLabel;
+	CountryISO = CountryISO;
+	preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
+	phoneForm = new FormGroup({
+		phone: new FormControl(undefined, [Validators.required])
+	});
+
+	changePreferredCountries() {
+		this.preferredCountries = [CountryISO.India, CountryISO.Canada];
+	}
 }
